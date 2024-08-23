@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .error {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .success {
+            background-color: #28a745;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Deepfake Detection</h1>
+    <form action="/detect_image" method="post" enctype="multipart/form-data">
+        <label for="image-file">Upload Image:</label>
+        <input type="file" id="image-file" name="file" accept="image/*"><br>
+        <input type="submit" value="Image Detection">
+    </form>
+    <br>
+    <form action="/detect_video" method="post" enctype="multipart/form-data">
+        <label for="video-file">Upload Video:</label>
+        <input type="file" id="video-file" name="file" accept="video/*"><br>
+        <input type="submit" value="Video Detection">
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message {% if 'error' in message %}error{% elif 'success' in message %}success{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Deepfake Detection</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Deepfake Detection</h1>-->
+<!--    <h2>Upload Image or Video</h2>-->
+<!--    <form action="/detect_image" method="post" enctype="multipart/form-data">-->
+<!--        <input type="file" name="file" accept="image/*">-->
+<!--        <input type="submit" value="Upload Image">-->
+<!--    </form>-->
+<!--    <form action="/detect_video" method="post" enctype="multipart/form-data">-->
+<!--        <input type="file" name="file" accept="video/*">-->
+<!--        <input type="submit" value="Upload Video">-->
+<!--    </form>-->
+<!--    <h2>Real-Time Detection</h2>-->
+<!--    <a href="/detect_realtime_image">Real-Time Image Detection</a><br>-->
+<!--    <a href="/detect_realtime_video">Real-Time Video Detection</a>-->
+<!--</body>-->
+<!--</html>-->
